@@ -1,0 +1,58 @@
+{
+    "openapi": "3.0.0",
+    "info": { "title": "Demo API", "version": "1.0.0" },
+    "paths": {
+      "/api/users": {
+        "get": {
+          "summary": "获取用户列表",
+          "operationId": "getUsers",
+          "responses": {
+            "200": {
+              "description": "成功",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": { "$ref": "#/components/schemas/User" }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "summary": "创建用户",
+          "operationId": "createUser",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/CreateUserDto" }
+              }
+            }
+          },
+          "responses": { "200": { "description": "成功" } }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "User": {
+          "type": "object",
+          "properties": {
+            "id": { "type": "integer" },
+            "name": { "type": "string" },
+            "email": { "type": "string" },
+            "age": { "type": "integer" }
+          }
+        },
+        "CreateUserDto": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "email": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
